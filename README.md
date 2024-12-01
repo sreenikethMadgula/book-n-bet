@@ -111,3 +111,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - Sui Blockchain
 - Move Programming Language
 - Telegram Platform
+
+## Deployed contracts on devnet
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+Deployed Package Id: `0x28f09684ad1a244b540387083d9fd466a5afb440d2444ba54e5a530e4e0b16a0`
