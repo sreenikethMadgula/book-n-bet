@@ -118,4 +118,72 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 
-Deployed Package Id: `0x28f09684ad1a244b540387083d9fd466a5afb440d2444ba54e5a530e4e0b16a0`
+Deployed Package Id: `0x70dd21874e6c942a0c1eb283c8cc533a992db1ed265a0cf6e16e0952529c14b4`
+
+Treasury Cap Id: `0x44b979c65cac39a2141754eac692b1762516f129ddface83bf3ffe93205fb6d7`
+
+### Using CLI to interact with contracts
+
+### Mint Tokens:
+Run:
+    
+    sui client call --package <package-id> \
+    --module sports_token \
+    --function mint \
+    --args <treasury-cap-id> <raw-balance> <recipient-id>
+
+`1000000000 balance` would mean `1 Sports Betting Token`
+
+Output:
+![alt text](image-3.png)
+
+
+### Get Balance: 
+Run:
+
+    sui client balance
+
+Output:
+![alt text](image-4.png)
+
+### Create Betting Pool
+Run:
+
+    sui client call --package <package-id> \
+    --module betting_contract \
+    --function create_betting_pool \
+    --args <pool-id> \
+    --gas-budget 10000000
+
+Output:
+![alt text](image-5.png)
+
+### Placing Bets
+Run:
+
+    sui client call --package <package-id> \
+    --module betting_contract \
+    --function place_bet \
+    --args \
+      <betting-pool-object-id>
+      <sports-token-coin-object-id>
+      1  # bet_type (0: Team A, 1: Team B, 2: Draw)
+    --gas-budget 10000000
+
+
+Output:
+![alt text](image-6.png)
+
+### Resolving Bets
+Run:
+
+    sui client call --package <package-id> \
+    --module betting_contract \
+    --function resolve_bets \
+    --args \
+      <betting-pool-object-id>
+      1  # winning_type (0: Team A, 1: Team B, 2: Draw)
+    --gas-budget 10000000
+
+Output:
+![alt text](image-7.png)

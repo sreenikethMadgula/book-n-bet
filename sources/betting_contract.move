@@ -30,13 +30,16 @@ module sports_betting::betting_contract {
     public fun create_betting_pool(
         game_id: u64,
         ctx: &mut TxContext
-    ): GameBettingPool {
-        GameBettingPool {
+    ) {
+        let betting_pool = GameBettingPool {
             id: object::new(ctx),
             game_id,
             total_pool: balance::zero(),
             bets: vector::empty()
-        }
+        };
+        
+        // Share the betting pool so it can be accessed by others
+        transfer::public_share_object(betting_pool);
     }
 
     // Public function to place a bet in the pool
