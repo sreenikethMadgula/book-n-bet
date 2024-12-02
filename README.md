@@ -118,9 +118,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 
-Deployed Package Id: `0x70dd21874e6c942a0c1eb283c8cc533a992db1ed265a0cf6e16e0952529c14b4`
+Deployed Package Id: `0x99b13bbf32aff83c8a640abb2d071acafd3811cf2e3045a1645828b0ba4a2a4b`
 
-Treasury Cap Id: `0x44b979c65cac39a2141754eac692b1762516f129ddface83bf3ffe93205fb6d7`
+Treasury Cap Id: `0x471584572ef926c40ea665d0f34685c2af408ab42f28380a976948ff99ec5b9e`
 
 ### Using CLI to interact with contracts
 
