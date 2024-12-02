@@ -71,7 +71,7 @@ module sports_betting::betting_contract {
     ) {
         let mut total_winning_pool: u64 = 0;
         let mut winning_bet_indices: vector<u64> = vector::empty();
-
+        
         let mut i = 0;
         while (i < vector::length(&pool.bets)) {
             let bet = vector::borrow(&pool.bets, i);
@@ -81,27 +81,32 @@ module sports_betting::betting_contract {
             };
             i = i + 1;
         };
-
+        
         if (total_winning_pool == 0) {
             return
         };
-
+        
         let total_pool_value = balance::value(&pool.total_pool);
-
+        
         let mut j = 0;
         while (j < vector::length(&winning_bet_indices)) {
             let winner_bet_index = *vector::borrow(&winning_bet_indices, j);
             let winner_bet = vector::borrow(&pool.bets, winner_bet_index);
             
-            // Formula: (total_pool_value * winner_bet_amount) / total_winning_pool
-            let payout = if (total_winning_pool > 0) {
-                (total_pool_value * winner_bet.bet_amount) / total_winning_pool
+            let payout = if (total_winning_pool > 0 && winner_bet.bet_amount > 0) {
+                let payout_calculation = (
+                    (total_pool_value as u128) * 
+                    (winner_bet.bet_amount as u128)
+                ) / (total_winning_pool as u128);
+                
+                (payout_calculation as u64)
             } else {
                 0
             };
             
-            vector::borrow_mut(&mut pool.bets, winner_bet_index).payout = some(payout);
-
+            // Use option::some() correctly
+            vector::borrow_mut(&mut pool.bets, winner_bet_index).payout = option::some(payout);
+            
             j = j + 1;
         };
     }
